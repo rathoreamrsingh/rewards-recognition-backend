@@ -1,8 +1,25 @@
 # Rewards and Recognition Internal Project
+## Overview
+TODO
 
+## Features
+TODO
 
+## Getting Started
+TODO
 
-### How to run
+## Usage
+TODO
 
-### Rules for contribution to project
+## Configuration
+TODO
+
+## Contributing
+TODO
+
+## License
+TODO
+
+## Acknowledgements
+TODO
 
