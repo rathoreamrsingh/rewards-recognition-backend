@@ -20,3 +20,9 @@ func (s *Service) GetUsers(c *gin.Context) {
 
 	u.GetUsers(c, s.DB)
 }
+
+func (s *Service) GetPointsForTheUser(c *gin.Context) {
+	u := model.Points{}
+
+	u.GetPointsForUser(c, s.DB)
+}
