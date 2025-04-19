@@ -20,8 +20,9 @@ func (r *Routers) Initialize(addr string, database *mongo.Database) {
 
 func (r *Routers) initializeRoutes(database *mongo.Database) {
 	// Define your routes here using a.Router
-	user := services.Service{DB: database}
-	r.Router.GET("/users", user.GetUsers)
+	service := services.Service{DB: database}
+	r.Router.GET("/users", service.GetUsers)
+	r.Router.GET("/points/:user_id", service.GetPointsForTheUser)
 	// ... other routes
 }
 

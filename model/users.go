@@ -23,9 +23,6 @@ func (u *User) GetUsers(c *gin.Context, DB *mongo.Database) {
 
 	collection := DB.Collection("users")
 
-	log.Println("Printing Collection")
-	log.Println(collection)
-
 	cursor, err := collection.Find(c.Request.Context(), bson.D{})
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
