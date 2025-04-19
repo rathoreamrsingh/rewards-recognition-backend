@@ -6,14 +6,12 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/common-nighthawk/go-figure"
 	"rsc.io/quote"
 )
 
 func main() {
 	log.Println("Starting Application")
-	myFigure := figure.NewColorFigure("Rewards and Recognition", "", "red", true)
-	myFigure.Print()
+	log.Println()
 	fmt.Println(quote.Go())
 
 	db := &database.Database{}
