@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "albums",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
