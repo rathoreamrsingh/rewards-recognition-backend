@@ -31,3 +31,10 @@ go.work.sum
 .vscode
 .idea
 main/__debug_bin*
+
+
+# env details 
+.env
+
+# project binary 
+rewards-and-recognition

@@ -11,10 +11,10 @@ import (
 
 type User struct {
 	ID           int    `json:"_id" bson:"_id"`
-	FirstName    string `json:"first_name" bson:"first_name"`
-	LastName     string `json:"last_name" bson:"last_name"`
-	EmailAddress string `json:"email_address" bson:"email_address"`
-	AvatarURL    string `json:"avatar_url" bson:"avatar_url"`
+	FirstName    string `json:"firstName" bson:"firstName"`
+	LastName     string `json:"lastName" bson:"lastName"`
+	EmailAddress string `json:"emailAddress" bson:"emailAddress"`
+	AvatarURL    string `json:"avatarUrl" bson:"avatarUrl"`
 }
 
 func (u *User) GetUsers(c *gin.Context, DB *mongo.Database) {

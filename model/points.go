@@ -12,32 +12,32 @@ import (
 )
 
 type Points struct {
-	ID               primitive.ObjectID `bson:"_id,omitempty" json:"id"`
-	UserId           int                `json:"user_id" bson:"user_id"`
-	GivablePoints    int                `json:"givable_points" bson:"givable_points"`
-	RedeemablePoints int                `json:"redeemable_points" bson:"redeemable_points"`
+	ID               primitive.ObjectID `bson:"_id,omitempty" json:"_id"`
+	UserId           int                `json:"userId" bson:"userId"`
+	GivablePoints    int                `json:"givablePoints" bson:"givablePoints"`
+	RedeemablePoints int                `json:"redeemablePoints" bson:"redeemablePoints"`
 }
 
 func (p *Points) GetPointsForUser(c *gin.Context, DB *mongo.Database) {
 	log.Println("Getting points")
 	c.Header("Content-Type", "application/json")
 
-	userID := c.Param("user_id")
+	userID := c.Param("userId")
 	if userID == "" {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "user_id is required"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "userId is required"})
 		return
 	}
 
 	userIdInt, err := strconv.Atoi(userID)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "user_id is not in right format"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "userId is not in right format"})
 		return
 	}
 
 	collection := DB.Collection("points")
 
-	// Query points where user_id matches
-	filter := bson.M{"user_id": userIdInt}
+	// Query points where userId matches
+	filter := bson.M{"userId": userIdInt}
 
 	cursor, err := collection.Find(c.Request.Context(), filter)
 	if err != nil {

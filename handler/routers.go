@@ -22,7 +22,7 @@ func (r *Routers) initializeRoutes(database *mongo.Database) {
 	// Define your routes here using a.Router
 	service := services.Service{DB: database}
 	r.Router.GET("/users", service.GetUsers)
-	r.Router.GET("/points/:user_id", service.GetPointsForTheUser)
+	r.Router.GET("/points/:userId", service.GetPointsForTheUser)
 	// ... other routes
 }
 

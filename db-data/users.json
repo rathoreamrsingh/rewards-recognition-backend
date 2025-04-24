@@ -1,16 +1,16 @@
 [
     {
         "_id" : 1,
-        "first_name" : "Amar",
-        "last_name" : "Singh",
-        "email_address" : "amar.singh@zenika.com",
-        "avatar_url" : "/some/location/from/s3/amar_avatar.png"
+        "firstName" : "Amar",
+        "lastName" : "Singh",
+        "emailAddress" : "amar.singh@zenika.com",
+        "avatarUrl" : "/some/location/from/s3/amar_avatar.png"
     },
     {
         "_id" : 2,
-        "first_name" : "Jhon",
-        "last_name" : "Doe",
-        "email_address" : "jhon.doe@zenika.com",
-        "avatar_url" : "/some/location/from/s3/john_doe.png"
+        "firstName" : "Jhon",
+        "lastName" : "Doe",
+        "emailAddress" : "jhon.doe@zenika.com",
+        "avatarUrl" : "/some/location/from/s3/john_doe.png"
     }
 ]

@@ -1,5 +1,13 @@
 package config
 
+import (
+	"log"
+	"os"
+	"strconv"
+
+	"github.com/joho/godotenv"
+)
+
 type DBConfig struct {
 	Protocol string
 	Username string
@@ -9,17 +17,64 @@ type DBConfig struct {
 }
 
 type Config struct {
+	Port    int
+	AppEnv  string
 	DB *DBConfig
 }
 
-func GetConfig() *Config {
-	return &Config{
-		DB: &DBConfig{
-			Protocol: "mongodb+srv",
-			Username: "mongo",
-			Password: "mongo",
-			Host:     "rewardsrecognition.dpmkpzc.mongodb.net",
-			Appname:  "rewards_and_recognition",
-		},
+func GetConfig() (*Config, error) {
+	err := godotenv.Load()
+	if err != nil {
+		// Handle error if .env file doesn't load, but don't necessarily fatal exit
+		// It's common to have environment variables set directly as well
+		log.Println("Error loading .env file")
 	}
+
+	portStr := os.Getenv("PORT")
+	port, err := strconv.Atoi(portStr)
+	if err != nil {
+		port = 8080 // Default port if not set or invalid
+	}
+
+	appEnv := os.Getenv("APP_ENV")
+	if appEnv == "" {
+		appEnv = "local" // Default environment
+	}
+
+	protocol := os.Getenv("PROTOCOL")
+	if protocol == "" {
+		protocol = "mongodb+srv" // Default protocol
+	}
+
+	username := os.Getenv("USERNAME")
+	if username == "" {
+		username = "mongo" // Default username
+	}
+
+	password := os.Getenv("PASSWORD")
+	if password == "" {
+		password = "mongo" // Default password
+	}
+
+	host := os.Getenv("HOST")
+	if host == "" {
+		host = "localhost:27017" // Default host
+	}
+
+	appName := os.Getenv("APPNAME")
+	if appName == "" {
+		appName = "rewardsAndRecognition" // Default app name
+	}
+
+	return &Config{
+		Port:   port,
+		AppEnv: appEnv,
+		DB: &DBConfig{
+			Protocol: protocol,
+			Username: username,
+			Password: password,
+			Host:     host,
+			Appname:  appName,
+		},
+	}, nil
 }
