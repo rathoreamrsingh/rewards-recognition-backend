@@ -9,4 +9,4 @@ services:
     ports:
       - "27017:27017"
 
-# Explore how to create db and collection automatically on start of docker 
+# TODO : Explore how to create db and collection automatically on start of docker 

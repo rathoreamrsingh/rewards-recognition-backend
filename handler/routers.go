@@ -23,6 +23,7 @@ func (r *Routers) initializeRoutes(database *mongo.Database) {
 	service := services.Service{DB: database}
 	r.Router.GET("/users", service.GetUsers)
 	r.Router.GET("/points/:userId", service.GetPointsForTheUser)
+	r.Router.GET("/user/:userId", service.GetUserByUserId)
 	// ... other routes
 }
 

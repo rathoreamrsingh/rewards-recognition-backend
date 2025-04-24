@@ -1,7 +1,6 @@
 package model
 
 import (
-	"log"
 	"net/http"
 	"strconv"
 
@@ -12,14 +11,13 @@ import (
 )
 
 type Points struct {
-	ID               primitive.ObjectID `bson:"_id,omitempty" json:"_id"`
+	Id               primitive.ObjectID `bson:"_id,omitempty" json:"_id"`
 	UserId           int                `json:"userId" bson:"userId"`
 	GivablePoints    int                `json:"givablePoints" bson:"givablePoints"`
 	RedeemablePoints int                `json:"redeemablePoints" bson:"redeemablePoints"`
 }
 
 func (p *Points) GetPointsForUser(c *gin.Context, DB *mongo.Database) {
-	log.Println("Getting points")
 	c.Header("Content-Type", "application/json")
 
 	userID := c.Param("userId")
@@ -47,11 +45,17 @@ func (p *Points) GetPointsForUser(c *gin.Context, DB *mongo.Database) {
 
 	defer cursor.Close(c.Request.Context())
 
-	var points []Points
-	if err := cursor.All(c.Request.Context(), &points); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
-		return
-	}
+	var points []Points // Change points to a slice of Points
+    if err := cursor.All(c.Request.Context(), &points); err != nil { // Pass a pointer to the slice
+        c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+        return
+    }
 
-	c.JSON(http.StatusOK, points)
+    // Handle the case where no points are found.
+    if len(points) == 0 {
+        c.JSON(http.StatusOK, []Points{}) //return empty array
+        return
+    }
+
+    c.JSON(http.StatusOK, points[0])
 }

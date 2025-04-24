@@ -21,6 +21,15 @@ func (s *Service) GetUsers(c *gin.Context) {
 	u.GetUsers(c, s.DB)
 }
 
+func (s *Service) GetUserByUserId(c *gin.Context) {
+	log.Print("Getting users")
+	c.Header("Content-Type", "application/json")
+
+	u := model.User{}
+
+	u.GetUserByUserId(c, s.DB)
+}
+
 func (s *Service) GetPointsForTheUser(c *gin.Context) {
 	u := model.Points{}
 

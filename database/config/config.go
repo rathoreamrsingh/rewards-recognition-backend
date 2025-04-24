@@ -17,13 +17,14 @@ type DBConfig struct {
 }
 
 type Config struct {
-	Port    int
-	AppEnv  string
-	DB *DBConfig
+	Port   int
+	AppEnv string
+	DB     *DBConfig
 }
 
+// TODO: check why this is not loading .env in debug mode for visual studio
 func GetConfig() (*Config, error) {
-	err := godotenv.Load()
+	err := godotenv.Load("./../.env")
 	if err != nil {
 		// Handle error if .env file doesn't load, but don't necessarily fatal exit
 		// It's common to have environment variables set directly as well
@@ -43,7 +44,7 @@ func GetConfig() (*Config, error) {
 
 	protocol := os.Getenv("PROTOCOL")
 	if protocol == "" {
-		protocol = "mongodb+srv" // Default protocol
+		protocol = "mongodb" // Default protocol
 	}
 
 	username := os.Getenv("USERNAME")
@@ -61,9 +62,9 @@ func GetConfig() (*Config, error) {
 		host = "localhost:27017" // Default host
 	}
 
-	appName := os.Getenv("APPNAME")
+	appName := os.Getenv("DB")
 	if appName == "" {
-		appName = "rewardsAndRecognition" // Default app name
+		appName = "rewardsAndRecognition" // Default app name  
 	}
 
 	return &Config{
