@@ -1,0 +1,12 @@
+services:
+  mongodb:
+    container_name: mongodb # Using a fixed name as it's not directly in the makefile
+    image: "mongo:4.2.16-bionic"
+    environment:
+      - MONGO_INITDB_DATABASE=${APPNAME}
+      - MONGO_INITDB_ROOT_USERNAME=${USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${PASSWORD}
+    ports:
+      - "27017:27017"
+
+# TODO : Explore how to create db and collection automatically on start of docker 

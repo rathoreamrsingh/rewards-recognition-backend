@@ -16,12 +16,12 @@ type Database struct {
 
 func (d *Database) Initialize() {
 	//cfg, err := config.GetConfig()
-	cfg := config.GetConfig()
+	cfg, err := config.GetConfig()
 
-	// if err != nil {
-	// 	log.Fatalf("Failed to load config: %v", err)
-	// 	return
-	// }
+	if err != nil {
+		log.Fatalf("Failed to load config: %v", err)
+		return
+	}
 
 	dbURI := fmt.Sprintf("%s://%s:%s@%s/?retryWrites=true&w=majority",
 		cfg.DB.Protocol,

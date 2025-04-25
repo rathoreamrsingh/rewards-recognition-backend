@@ -12,7 +12,7 @@ import (
 
 func main() {
 	log.Println("Starting Application")
-	myFigure := figure.NewColorFigure("Rewards and Recognition", "", "red", true)
+	myFigure := figure.NewColorFigure("Rewards and Recognition", "", "green", true)
 	myFigure.Print()
 	fmt.Println(quote.Go())
 

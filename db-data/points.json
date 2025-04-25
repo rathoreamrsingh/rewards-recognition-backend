@@ -1,12 +1,12 @@
 [
     {
-        "user_id" : "1",
-        "givable_points" : 100,
-        "receivable_points" : 100
+        "userId" : 1,
+        "givablePoints" : 100,
+        "redeemablePoints" : 100
     },
     {
-        "user_id" : "2",
-        "givable_points" : 100,
-        "receivable_points" : 100
+        "userId" : 2,
+        "givablePoints" : 100,
+        "redeemablePoints" : 100
     }
 ]
