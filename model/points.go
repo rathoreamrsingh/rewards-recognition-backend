@@ -11,7 +11,7 @@ import (
 )
 
 type Points struct {
-	Id               primitive.ObjectID `bson:"_id,omitempty" json:"_id"`
+	Id               primitive.ObjectID `bson:"_id,omitempty" json:"id"`
 	UserId           int                `json:"userId" bson:"userId"`
 	GivablePoints    int                `json:"givablePoints" bson:"givablePoints"`
 	RedeemablePoints int                `json:"redeemablePoints" bson:"redeemablePoints"`
