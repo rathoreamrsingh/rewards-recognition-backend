@@ -5,7 +5,7 @@ TODO - just for testing
 ## Features
 TODO
 
-## Usage
+## 🛠️ Usage
 
 ### Prerequisites
 

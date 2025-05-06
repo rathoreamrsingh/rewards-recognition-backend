@@ -38,7 +38,6 @@ func (r *Routers) initializeRoutes(database *mongo.Database) {
 	apiV1.POST("/recognition", service.CreateRecognition)
 	apiV1.PUT("/recognition/:recognitionId", service.UpdateRecognition)
 	apiV1.DELETE("/recognition/:recognitionId", service.DeleteRecognition)
-
 }
 
 func (r *Routers) Run(addr string) {
