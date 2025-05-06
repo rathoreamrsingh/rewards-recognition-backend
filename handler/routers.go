@@ -19,14 +19,27 @@ func (r *Routers) Initialize(addr string, database *mongo.Database) {
 }
 
 func (r *Routers) initializeRoutes(database *mongo.Database) {
-	// Define your routes here using a.Router
 	service := services.Service{DB: database}
-	r.Router.GET("/users", service.GetUsers)
-	r.Router.GET("/points/:userId", service.GetPointsForTheUser)
-	r.Router.GET("/user/:userId", service.GetUserByUserId)
-	// ... other routes
+	/**
+	* Applying versiong to the API
+	**/
+	apiV1 := r.Router.Group("/api/v1")
+
+	// Apis for users
+	apiV1.GET("/users", service.GetUsers)
+	apiV1.GET("/user/:userId", service.GetUserByUserId)
+
+	// Apis for points
+	apiV1.GET("/points/:userId", service.GetPointsForTheUser)
+
+	// Apis for recognitions
+	apiV1.GET("/recognitions", service.GetRecognitions)
+	apiV1.GET("/recognition/:recognitionId", service.GetRecognitionById)
+	apiV1.POST("/recognition", service.CreateRecognition)
+	apiV1.PUT("/recognition/:recognitionId", service.UpdateRecognition)
+	apiV1.DELETE("/recognition/:recognitionId", service.DeleteRecognition)
 }
 
 func (r *Routers) Run(addr string) {
-	log.Fatal(r.Router.Run(addr)) // Use Gin's Run method
+	log.Fatal(r.Router.Run(addr))
 }
